@@ -1,0 +1,49 @@
+<%= form_for @user, url: {action: 'update'} do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="devise_sign_up_fields">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+
+    <%= f.label :second_name %><br>
+    <%= f.text_field :second_name %>
+
+    <%= f.label :patronymic %><br>
+    <%= f.text_field :patronymic %>
+
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+
+    <%= f.label :birthday %><br>
+    <%= f.date_field :birthday %><br>
+
+    <%= f.radio_button :gender, :male %>
+    <%= f.label :male %>
+    
+    <%= f.radio_button :gender, :female %>
+    <%= f.label :female %><br>
+    
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+
+    <p>To save changes, please enter <span id="current_password">current password</span></p>
+    <%= f.password_field :current_password %>
+    
+    <%= f.submit %>
+  </div>
+
+<% end %>

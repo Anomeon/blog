@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Applic</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="wrapper">
+    <p>
+      <% unless user_signed_in? %>
+      <%= link_to 'Show all posts', root_url %>
+      <% end %>
+    </p>
+
+    <div id="layout_header">
+      <% if user_signed_in? %>
+
+        <p id="signed_in_as">
+          Signed in as <span id="user_name"><%= current_user.email %></span>
+          <%= link_to '(Edit profile)', edit_user_registration_path %> 
+          Not you?
+        </p>
+
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %><br>
+
+        <p>
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+        </p>
+
+        <div class="layout_top_buttons">
+          <%= link_to 'Create new post', new_user_post_path(current_user) %>
+          <%= link_to 'View your posts', user_posts_path(current_user.id) %>
+          <%= link_to 'Show all Posts', root_url %>
+        </div>
+
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<h2>Listing your posts</h2>
+<div id="your_posts_index_table">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th>Created at</th>
+      <th colspan="2"></th>
+    </tr>
+
+    <% @posts.each do |post| %>
+      <tr>
+        <td><span id="post_index_table_title"><%= post.title[0..20] + "..." %></span></td>
+        <td><%= post.text[0..20] + "..." %></td>
+        <td><%= post.user.created_at.strftime("%d %b. %Y %T") %></td>
+        <td><%= link_to 'Show', user_post_path(current_user, post[:id]) %></td>
+        <td><%= link_to 'Edit', edit_user_post_path(current_user, post[:id]) %></td>
+        <td><%= link_to 'Delete', user_post_path(current_user, post[:id]),
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>
