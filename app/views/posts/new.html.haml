@@ -1,0 +1,4 @@
+#new_wrap
+  = form_for @post, url: {action: 'create'} do |f|
+    = render partial: "errors"
+    = render partial: "form", locals: {f: f}

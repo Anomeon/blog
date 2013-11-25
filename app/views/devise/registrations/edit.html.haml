@@ -1,0 +1,9 @@
+= form_for @user, url: {action: 'update'} do |f|
+  = render partial: "errors"
+  = render partial: "regform", locals: {f: f}
+  
+  %p To save changes, please enter 
+  %span#current_password current password
+  = f.password_field :current_password
+
+  = f.submit

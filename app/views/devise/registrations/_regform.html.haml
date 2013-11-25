@@ -1,0 +1,35 @@
+#devise_sign_up_fields
+  = f.label :first_name
+  %br
+  = f.text_field :first_name
+
+  = f.label :second_name
+  %br
+  = f.text_field :second_name
+
+  = f.label :patronymic
+  %br
+  = f.text_field :patronymic
+
+  = f.label :email
+  %br
+  = f.email_field :email
+
+  = f.label :birthday
+  %br
+  = f.date_field :birthday
+  %br
+
+  = f.radio_button :gender, :male
+  = f.label :male
+  
+  = f.radio_button :gender, :female
+  = f.label :female
+  %br
+  
+  = f.label :password
+  %br
+  = f.password_field :password
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation

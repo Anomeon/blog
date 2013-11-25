@@ -1,0 +1,45 @@
+#post_show_article
+  %h1
+    %strong
+    = @post.title
+  %p= @post.text
+
+  %hr
+
+  %span.post_show_author
+    %strong Author:
+    = @post.user.email
+
+  %span.post_show_created_at
+    %strong Created at:
+    = @post.created_at.strftime("%d %b. %Y %T")
+
+  %hr
+
+  #post_show_buttons
+    - if user_signed_in?
+      - if current_user.id == @post.user_id
+        = link_to 'Edit', edit_user_post_path(@post.user_id, @post.id)
+        = link_to 'Delete', user_post_path(@post.user_id, @post.id), method: :delete, data: { confirm: 'Are you sure?' }
+
+#post_show_comments
+
+  %h2 Comments:
+  - @post.comments.each do |comment|
+    %p#show_comment_user_date
+      %em
+        %span#comment_user_email= comment.user.email
+        = comment.created_at.strftime("%d %b. %Y %T")
+
+        - if user_signed_in?
+          - if current_user.id == comment.user.id
+            = link_to 'Edit', edit_user_post_comment_path(comment.user_id, comment.post.id, comment.id) 
+            = link_to 'Delete', [current_user, comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }
+
+      #post_show_comment= comment.body 
+
+  - if user_signed_in?
+    %p#leave_comment Leave your comment:
+    = render template: 'comments/new'
+  - else
+    %p#to_leave_comments= render text: 'To leave comments please sign in'
