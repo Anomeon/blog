@@ -1,0 +1,2 @@
+= form_for([@user, @post, @comment], url: {action: 'update'})  do |f|
+  = render partial: "commform", locals: {f: f}
