@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :require_login, only: [:edit, :update, :destroy, :new]
+  before_filter :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.where('user_id = ?', params[:user_id])
@@ -21,15 +22,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = 'post updated!'
       redirect_to user_post_path(current_user, params[:id])
@@ -39,7 +37,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
 
     redirect_to user_posts_path(current_user),
@@ -47,6 +44,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :text, :email, :user_id, :body)
