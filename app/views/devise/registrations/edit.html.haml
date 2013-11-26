@@ -7,3 +7,5 @@
   = f.password_field :current_password
 
   = f.submit
+
+  = button_to "Delete my account", registration_path(resource_name), :id => "cancel-account", :data => { :confirm => "Are you sure? Your posts and comments will be deleted too!" }, :method => :delete

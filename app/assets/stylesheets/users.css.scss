@@ -117,3 +117,20 @@ body input[name="commit"]:active {
 #current_password {
   color: lime;
 }
+
+#cancel-account {
+  display: block;
+  height: 26px;
+  width: 148px;
+  border-radius: 5px;
+  border: 1px solid red;
+  line-height: 22px;
+  text-align: center;
+  background: -webkit-linear-gradient(#ECECEC, #BFBFBF);
+  color: red;
+  letter-spacing: 1px;
+  font-size: 14px;
+  text-shadow: 0 1px 0 #fff;
+  margin: auto;
+  margin-top: 40px;
+}

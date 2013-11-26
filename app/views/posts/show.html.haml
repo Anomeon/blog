@@ -22,7 +22,7 @@
         = link_to 'Edit', edit_user_post_path(@post.user_id, @post.id)
         = link_to 'Delete', user_post_path(@post.user_id, @post.id), method: :delete, data: { confirm: 'Are you sure?' }
 
-#post_show_comments
+.post_show_comments
 
   %h2 Comments:
   - @post.comments.each do |comment|

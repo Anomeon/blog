@@ -2,17 +2,26 @@
 #your_posts_index_table
   %table
     %tr
-      %th Title
-      %th Text
-      %th Created at
+      %th{:width => "120px"} Title
+      %th{:width => "120px"} Text
+      %th{:width => "150px"} Created at
       %th{:colspan => "2"}
 
     - @posts.each do |post|
       %tr
-        %td 
-          %span#post_index_table_title= post.title[0..20] + "..."
-        %td= post.text[0..20] + "..."
-        %td= post.user.created_at.strftime("%d %b. %Y %T")
-        %td= link_to 'Show', user_post_path(current_user, post[:id])
-        %td= link_to 'Edit', edit_user_post_path(current_user, post[:id])
-        %td= link_to 'Delete', user_post_path(current_user, post[:id]), method: :delete, data: { confirm: 'Are you sure?' }
+        %td{:width => "100px"} 
+          %span#post_index_table_title
+          - if post.title.length > 17
+            = post.title[0..14] + "..."
+          - else
+            = post.title
+
+        %td{:width => "100px"}
+          - if post.text.length > 17
+            = post.text[0..14] + "..."
+          - else
+            = post.text
+        %td{:width => "150px"}= post.user.created_at.strftime("%d %b. %Y %T")
+        %td{:width => "20px"}= link_to 'Show', user_post_path(current_user, post[:id])
+        %td{:width => "20px"}= link_to 'Edit', edit_user_post_path(current_user, post[:id])
+        %td{:width => "20px"}= link_to 'Delete', user_post_path(current_user, post[:id]), method: :delete, data: { confirm: 'Are you sure?' }

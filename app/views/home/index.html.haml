@@ -4,9 +4,8 @@
     - @posts.each do |post|
       - if user.id == post.user_id
         
-        #home_index_title
-          %h1
-          %strong= post.title[0..120]
+        .home_index_title
+          %h1= post.title[0..120]
 
         #home_index_text
           = post.text[0..585]
@@ -15,9 +14,9 @@
         #home_index_information
           %hr
           %span.post_show_author
-          %strong Author:
-          = user.email
+            %strong Author:
+            = user.email
           %span.post_show_created_at
-          %strong Created at:
-          = user.created_at.strftime("%d %b. %Y %T")
+            %strong Created at:
+            = user.created_at.strftime("%d %b. %Y %T")
           %hr

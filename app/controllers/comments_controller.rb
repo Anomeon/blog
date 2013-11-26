@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to user_post_path(current_user, @post.id)
+      redirect_to user_post_path(@post.user.id, @post.id)
     else
-      redirect_to user_post_path(current_user, @post.id)
+      redirect_to user_post_path(@post.user.id, @post.id)
     end
   end
 
