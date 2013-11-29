@@ -1,4 +1,8 @@
 #new_wrap
   = form_for @post, url: {action: 'create'} do |f|
+    - @tags.each do |t|
+      = t.tag_text 
+      = check_box_tag :tag_text, t.tag_text
     = render partial: "errors"
     = render partial: "form", locals: {f: f}
+  

@@ -8,11 +8,14 @@ class PostsController < ApplicationController
   end
 
   def new
+    @tags = Tag.all
     @post = Post.new
   end
 
   def create
+    @tags = Tag.all
     @post = current_user.posts.create(post_params)
+    @tag.posts << @post
     if @post.save
       flash[:success] = 'post created!'
       redirect_to user_posts_path(current_user)
