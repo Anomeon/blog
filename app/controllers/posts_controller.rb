@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   def create
     @tags = Tag.all
     @post = current_user.posts.create(post_params)
-    @tag.posts << @post
     if @post.save
       flash[:success] = 'post created!'
       redirect_to user_posts_path(current_user)
@@ -28,9 +27,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @tags = Tag.all
   end
 
   def update
+    @tags = Tag.all
+
     if @post.update(post_params)
       flash[:success] = 'post updated!'
       redirect_to user_post_path(current_user, params[:id])
@@ -53,7 +55,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :text, :email, :user_id, :body)
+    params.require(:post).permit(:title, :text, :email, :user_id, :body, :tag_ids => [])
   end
 
   def require_login
