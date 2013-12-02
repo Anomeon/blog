@@ -16,6 +16,12 @@ class PostsController < ApplicationController
     @tags = Tag.all
     @post = current_user.posts.create(post_params)
     if @post.save
+      if @tag = params[:post][:t_ids]
+        @tag.each do |t|
+          tag = Tag.find t
+          tag.posts << @post
+        end
+      end
       flash[:success] = 'post created!'
       redirect_to user_posts_path(current_user)
     else
@@ -24,6 +30,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @tags = Tag.all
+    @tag = @post.tags
+
   end
 
   def edit
@@ -34,6 +43,12 @@ class PostsController < ApplicationController
     @tags = Tag.all
 
     if @post.update(post_params)
+      if @tag = params[:post][:t_ids]
+        @tag.each do |t|
+          tag = Tag.find t
+          tag.posts << @post
+        end
+      end  
       flash[:success] = 'post updated!'
       redirect_to user_post_path(current_user, params[:id])
     else
