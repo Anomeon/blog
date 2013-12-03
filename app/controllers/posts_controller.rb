@@ -41,14 +41,13 @@ class PostsController < ApplicationController
 
   def update
     @tags = Tag.all
-
     if @post.update(post_params)
       if @tag = params[:post][:t_ids]
         @tag.each do |t|
           tag = Tag.find t
           tag.posts << @post
         end
-      end  
+      end
       flash[:success] = 'post updated!'
       redirect_to user_post_path(current_user, params[:id])
     else

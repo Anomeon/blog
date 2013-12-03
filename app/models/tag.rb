@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
   validates :tag_text, presence: true
-  has_and_belongs_to_many :posts
+  has_many :categories
+  has_many :posts, through: :categories
 end

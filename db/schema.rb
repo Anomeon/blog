@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20131117115026) do
 
+  create_table "categories", force: true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
   create_table "comments", force: true do |t|
     t.string   "body"
     t.integer  "post_id"
@@ -33,11 +38,6 @@ ActiveRecord::Schema.define(version: 20131117115026) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
-
-  create_table "posts_tags", id: false, force: true do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
-  end
 
   create_table "tags", force: true do |t|
     t.string   "tag_text"

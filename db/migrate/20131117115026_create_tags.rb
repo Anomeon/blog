@@ -5,7 +5,7 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :posts_tags, id: false do |t|
+    create_table :categories do |t|
       t.belongs_to :post
       t.belongs_to :tag
     end
