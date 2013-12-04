@@ -1,8 +1,12 @@
+%h2 Listing tags
+= link_to 'Create tag', new_tag_path
+%br
+%br
+
+#your_posts_index_table
   %table
-    %tr
-      %th
-        - @tags.each do |tag|
-        = link_to tag.tag_text, tag_path(tag.id)
-    %tr
-      %th
-        - @destroy
+    - @tags.each do |tag|
+      %tr
+        %td= link_to tag.tag_text, tag_path(tag.id)
+        %td#tag-delete= link_to 'Delete', tag_path(tag.id), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Edit', edit_tag_path(tag.id)

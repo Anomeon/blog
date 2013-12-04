@@ -15,6 +15,20 @@ class TagsController < ApplicationController
     end
   end
 
+  def edit
+    @tag = Tag.find(params[:id])
+  end
+
+  def update
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      redirect_to tags_path
+    else
+      flash[:error] = "Tag name can't be blank"
+      render 'edit'
+    end
+  end
+
   def show
     @tags = Tag.all
     @users = User.all

@@ -15,8 +15,9 @@
     = @post.created_at.strftime("%d %b. %Y %T")
 
   %hr
-  - @tag.each do |t|
-    = link_to t.tag_text, tag_path(t.id)
+  %p
+    - @tag.each do |t|
+      = link_to t.tag_text, tag_path(t.id)
 
   #post_show_buttons
     - if user_signed_in?

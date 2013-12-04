@@ -1,6 +1,4 @@
 = form_for @post, url: {action: 'update'} do |f|
-  - @tags.each do |t|
-    = t.tag_text 
-    = check_box_tag "post[t_ids][]", t.id, @post.tag_ids.include?(t.id)
+  = render partial: "tagform"
   = render partial: "errors"
   = render partial: "form", locals: {f: f}
