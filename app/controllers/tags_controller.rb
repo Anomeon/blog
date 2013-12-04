@@ -22,6 +22,12 @@ class TagsController < ApplicationController
     @posts = @tag.posts
   end
 
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    redirect_to tags_path, alert: "Tag was deleted"
+  end
+
   private
 
   def tag_params

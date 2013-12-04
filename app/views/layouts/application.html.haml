@@ -29,7 +29,8 @@
           .layout_top_buttons
             = link_to 'Create new post', new_user_post_path(current_user)
             = link_to 'View your posts', user_posts_path(current_user.id)
-            = link_to 'Show all Posts', root_url
+            = link_to 'Show all posts', root_url
+            = link_to 'Show all tags',  tags_path
 
         - else
           = link_to "Sign up", new_user_registration_path 

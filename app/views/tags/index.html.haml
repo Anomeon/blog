@@ -1,2 +1,8 @@
-- @tags.each do |tag|
-  = tag.tag_text
+  %table
+    %tr
+      %th
+        - @tags.each do |tag|
+        = link_to tag.tag_text, tag_path(tag.id)
+    %tr
+      %th
+        - @destroy

@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20131117115026) do
 
   create_table "categories", force: true do |t|
-    t.integer "post_id"
     t.integer "tag_id"
+    t.integer "post_id"
   end
 
   create_table "comments", force: true do |t|

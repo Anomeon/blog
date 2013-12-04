@@ -6,8 +6,8 @@ class CreateTags < ActiveRecord::Migration
     end
 
     create_table :categories do |t|
-      t.belongs_to :post
       t.belongs_to :tag
+      t.belongs_to :post
     end
   end
 end

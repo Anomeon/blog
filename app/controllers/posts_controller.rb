@@ -42,12 +42,32 @@ class PostsController < ApplicationController
   def update
     @tags = Tag.all
     if @post.update(post_params)
-      if @tag = params[:post][:t_ids]
-        @tag.each do |t|
-          tag = Tag.find t
-          tag.posts << @post
+      @tag = params[:post][:t_ids]
+
+        i = true
+        @post.tags.each do |p|
+          if i == false
+            @tag.each do |t|
+              if p.id.to_s == t
+                i = false
+                break
+              end
+            end
+          else
+            @category = Category.where(post_id: params[:id], tag_id: p).first
+            @category.destroy 
+          end
         end
-      end
+
+        unless @tag.nil?
+          @tag.each do |t|
+            unless @post.tags.exists?(id: t)
+              tag = Tag.find t
+              tag.posts << @post
+            end
+          end
+        end
+
       flash[:success] = 'post updated!'
       redirect_to user_post_path(current_user, params[:id])
     else
