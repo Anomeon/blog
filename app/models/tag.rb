@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
-  validates :tag_text, presence: true
   has_many :categories
   has_many :posts, through: :categories
 
-  validates :tag_text, presence: :true
+  validates :tag_text, presence: :true, length: { maximum: 30 }
+
 end

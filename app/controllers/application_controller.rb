@@ -22,4 +22,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
+  def require_login
+    unless user_signed_in?
+      redirect_to root_url,
+                  alert: "Please, Sign In first!"
+    end
+  end
+
+  def all_tags
+    @tags = Tag.all
+  end 
+
 end

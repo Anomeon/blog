@@ -8,5 +8,6 @@
     - @tags.each do |tag|
       %tr
         %td= link_to tag.tag_text, tag_path(tag.id)
-        %td#tag-delete= link_to 'Delete', tag_path(tag.id), method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Edit', edit_tag_path(tag.id)
+        - if user_signed_in?
+          %td.tag-buttons= link_to 'Edit', edit_tag_path(tag.id)
+          %td.tag-buttons= link_to 'Delete', tag_path(tag.id), method: :delete, data: { confirm: 'Are you sure?' }

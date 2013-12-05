@@ -1,0 +1,6 @@
+- if @tag.errors.any?
+  #error-explanation
+    %h2 #{pluralize(@tag.errors.count, "error")} prohibited this tag from being saved:
+    %ul
+    - @tag.errors.full_messages.each do |msg|
+      %li= msg

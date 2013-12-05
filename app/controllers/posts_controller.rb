@@ -2,18 +2,18 @@ class PostsController < ApplicationController
 
   before_filter :require_login, only: [:edit, :update, :destroy, :new]
   before_filter :find_post, only: [:show, :edit, :update, :destroy]
+  before_filter :all_tags, only: [:show, :new, :create, :edit, :update]
+  # :all_tags in application controller
 
   def index
     @posts = Post.where('user_id = ?', params[:user_id])
   end
 
   def new
-    @tags = Tag.all
     @post = Post.new
   end
 
   def create
-    @tags = Tag.all
     @post = current_user.posts.create(post_params)
     if @post.save
       if @tag = params[:post][:t_ids]
@@ -30,31 +30,28 @@ class PostsController < ApplicationController
   end
 
   def show
-    @tags = Tag.all
     @tag = @post.tags
 
   end
 
   def edit
-    @tags = Tag.all
   end
 
   def update
-    @tags = Tag.all
     if @post.update(post_params)
-      @tag = params[:post][:t_ids]
+      @tag = params[:post][:t_ids]  # вытаскиваем из params id-шники
 
         i = true
-        @post.tags.each do |p|
-          if i == false
-            @tag.each do |t|
-              if p.id.to_s == t
+        @post.tags.each do |p|      # вытаскиваем из бд все тэги связанные с постом
+          if i == false             # переменная i принимает true изначально и еще в том случае, когда в params нет id который есть у поста в бд. В else связь тега с постом будет удалена
+            @tag.each do |t|        # пробегаемся по params с id-шниками
+              if p.id.to_s == t     # если у поста уже есть этот тег, то присвой false и ничего не делай
                 i = false
               end
             end
           else
-            @category = Category.where(post_id: params[:id], tag_id: p).first
-            @category.destroy 
+            @category = Category.where(post_id: params[:id], tag_id: p).first # поиск необходимой связи в таблице Categories
+            @category.destroy
           end
         end
 
@@ -89,13 +86,6 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text, :email, :user_id, :body, :tag_ids => [])
-  end
-
-  def require_login
-    unless user_signed_in?
-      redirect_to root_url,
-                  alert: "Please, Sign In first!"
-    end
   end
 
 end

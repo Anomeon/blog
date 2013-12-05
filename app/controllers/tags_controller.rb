@@ -1,7 +1,10 @@
 class TagsController < ApplicationController
-  
+
+  before_filter :require_login, only: [:edit, :update, :destroy, :new]
+  before_filter :find_tag, only: [:show, :edit, :update, :destroy]
+  before_filter :all_tags, only: [:show, :index]
+
   def index
-    @tags = Tag.all
   end
 
   def new
@@ -11,16 +14,16 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.create(tag_params)
     if @tag.save
-      redirect_to new_tag_path
+      redirect_to tags_path
+    else
+      render 'new'
     end
   end
 
   def edit
-    @tag = Tag.find(params[:id])
   end
 
   def update
-    @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
       redirect_to tags_path
     else
@@ -30,22 +33,26 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tags = Tag.all
     @users = User.all
-    @tag = Tag.find(params[:id])
     @posts = @tag.posts
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
     @tag.destroy
     redirect_to tags_path, alert: "Tag was deleted"
   end
 
   private
 
+  def find_tag
+    @tag = Tag.find(params[:id])
+  end
+
+
+
   def tag_params
     params.require(:tag).permit(:tag_text, :post_id, :user_id)
   end
+
 end
 

@@ -47,11 +47,4 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body, :user_id, :post_id, :email)
   end
 
-  def require_login
-    unless user_signed_in?
-      redirect_to root_url,
-                  alert: "Please, Sign In first!"
-    end
-  end
-
 end
