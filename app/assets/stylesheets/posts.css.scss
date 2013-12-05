@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#new_wrap {
+#new-wrap {
   margin: 0 auto;
 }
 
-#post_title_label {
+#post-title-label {
   margin-top: 10px;
   font-size: 14px;
   text-shadow: 0 1px 0 #000;
@@ -37,7 +37,7 @@
   outline:none;
 }
 
-#post_text_label {
+#post-text-label {
   margin-top: 10px;
   font-size: 14px;
   text-shadow: 0 1px 0 #000;
@@ -68,7 +68,7 @@
   outline:none;
 }
 
-#post_new_submit input {
+#post-new-submit input {
 	display: block;
 	height: 30px;
 	width: 148px;
@@ -84,7 +84,7 @@
 	margin: auto;
 }
 
-#post_new_submit input:hover {
+#post-new-submit input:hover {
   display: block;
   height: 30px;
   width: 148px;
@@ -100,7 +100,7 @@
   margin: auto;
 }
 
-#post_new_submit input:active {
+#post-new-submit input:active {
   display: block;
   height: 30px;
   width: 148px;
@@ -117,19 +117,19 @@
   margin: auto;
 }
 
-#your_posts_index_table table {
+#your-posts-index-table table {
   margin: auto;
   text-align: left;
 }
 
-#post_show_article {
+#post-show-article {
   width: 500px;
   text-align: justify;
   margin: auto;
   font-size: 14px;
 }
 
-#post_show_buttons a {
+#post-show-buttons a {
   display: inline-block;
   height: 20px;
   width: 50px;
@@ -146,16 +146,16 @@
   text-decoration: none;
 }
 
-#show_comment_user_date {
+#show-comment-user-date {
   padding-top: 20px;
   margin: 0;
 }
 
-#comment_user_email {
+#comment-user-email {
   color: #FFCC66;
 }
 
-#post_show_comment {
+#post-show-comment {
   font-size: 14px;
   margin-top: 5px;
 }
@@ -179,15 +179,15 @@
   margin-top: 5px;
 }
 
-#post_index_table_title {
+#post-index-table-title {
   color: #FFCC66;
 }
 
-#leave_comment {
+#leave-comment {
   padding-top: 20px;
 }
 
-#to_leave_comments {
+#to-leave-comments {
   color: lime;
 }
 

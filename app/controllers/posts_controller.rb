@@ -50,7 +50,6 @@ class PostsController < ApplicationController
             @tag.each do |t|
               if p.id.to_s == t
                 i = false
-                break
               end
             end
           else

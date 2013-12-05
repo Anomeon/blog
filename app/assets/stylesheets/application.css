@@ -44,19 +44,19 @@ ul, li {
   margin: 0;
 }
 
-#error_explanation li {
+#error-explanation li {
   color: orange;
 }
 
-#layout_header {
+#layout-header {
   margin-bottom: 10px;
 }
 
-#signed_in_as {
+#signed-in-as {
   display: inline;
 }
 
-.layout_top_buttons a {
+.layout-top-buttons a {
   display: inline-block;
   height: 20px;
   line-height: 20px;
@@ -72,7 +72,7 @@ ul, li {
   text-decoration: none;
 }
 
-.layout_top_buttons a:hover {
+.layout-top-buttons a:hover {
   display: inline-block;
   height: 20px;
   line-height: 20px;
@@ -88,7 +88,7 @@ ul, li {
   text-decoration: none;
 }
 
-.layout_top_buttons a:active {
+.layout-top-buttons a:active {
   display: inline-block;
   height: 20px;
   line-height: 20px;
@@ -104,24 +104,24 @@ ul, li {
   text-decoration: none;
 }
 
-#user_name {
+#user-name {
   color: #00BFFF;
 }
 
-#flash_notice {
+#flash-notice {
   color: orange;
 }
 
-.post_show_author {
+.post-show-author {
   font-size: 12px;
 }
 
-.post_show_created_at {
+.post-show-created-at {
   float: right;
   font-size: 12px;
 }
 
-.post_show_comments {
+.post-show-comments {
   width: 500px;
   margin: auto;
   text-align: left;

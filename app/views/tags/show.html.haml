@@ -1,24 +1,24 @@
-%h2 Listing posts
-#index_table
+%h2 Posts with tag: #{@tag.tag_text}
+#index-table
   - @tags.each do |tag|
     = link_to tag.tag_text, tag_path(tag.id)
   - @users.each do |user|
     - @posts.each do |post|
       - if user.id == post.user_id
         
-        .home_index_title
+        .home-index-title
           %h1= post.title[0..120]
 
-        #home_index_text
+        #home-index-text
           = post.text[0..585]
           = link_to 'show post', user_post_path(post.user_id, post.id)
 
-        #home_index_information
+        #home-index-information
           %hr
-          %span.post_show_author
+          %span.post-show-author
             %strong Author:
             = user.email
-          %span.post_show_created_at
+          %span.post-show-created-at
             %strong Created at:
             = user.created_at.strftime("%d %b. %Y %T")
           %hr
