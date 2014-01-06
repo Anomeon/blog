@@ -5,21 +5,29 @@ describe User do
   it "Checks association user with post" do
     user1 = create(:user)
     post1 = create(:post)
+    user1.posts.empty?.should == true
     user1.posts << post1
-    user1.id.should == post1.user_id
+    user1.posts.first.id.should == post1.id
   end
 
-  it "Deleting user" do
+  it "Deletes user and checks deleting posts associated with user" do
     user1 = create(:user)
     post1 = create(:post)
-    post2 = create(:post)
-    post3 = create(:post)
+    user1.posts.empty?.should == true
     user1.posts << post1
-    user1.posts << post2
-    user1.posts << post3
-    puts user1.posts.count
+    # puts user1.posts.count            # Удалить
+    user1.destroy                       # Удаляю из базы, но не из памяти? Почему вызвав puts ниже объект еще существует? Может из за того, что я вызываю на нем метод (проверил, объект остается тот же что и при создании, так что вряд ли из за этого), он автоматически создается пустым?
+    user1.posts.empty?.should == true
+    # puts user1.posts.count            # Удалить
+    # puts user1.inspect                # Удалить
+  end
+
+  it "Deletes user and checks deleting comments associated with user" do
+    user1 = create(:user)
+    comment1 = create(:comment)
+    user1.comments.empty?.should == true
+    user1.comments << comment1
     user1.destroy
-    puts user1
-    # expect { delete user_path(user1) }
+    user1.comments.empty?.should == true
   end
 end

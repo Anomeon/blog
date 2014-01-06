@@ -72,7 +72,6 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-
     redirect_to user_posts_path(current_user),
                   alert: "Post was deleted"
   end
