@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Post do
 
   it "Checks association post with comment" do
-    user1 = create(:user)
-    post1 = create(:post)
-    comment1 = create(:comment)    
+    user1 = FactoryGirl.create(:user)
+    post1 = FactoryGirl.create(:post)
+    comment1 = FactoryGirl.create(:comment)    
     user1.comments.empty?.should == true
     post1.comments.empty?.should == true
     user1.comments << comment1
@@ -15,8 +15,8 @@ describe Post do
   end
 
   it "Checks association post with tag" do
-    post1 = create(:post)
-    tag1 = create(:tag)
+    post1 = FactoryGirl.create(:post)
+    tag1 = FactoryGirl.create(:tag)
     tag1.posts.empty?.should == true
     tag1.posts << post1
     category1 = Category.first
@@ -25,8 +25,8 @@ describe Post do
   end
 
   it "Deletes post and checks deleting comments associated with post" do
-    post1 = create(:post)
-    comment1 = create(:comment)
+    post1 = FactoryGirl.create(:post)
+    comment1 = FactoryGirl.create(:comment)
     post1.comments.empty?.should == true
     post1.comments << comment1
     post1.destroy
@@ -34,12 +34,13 @@ describe Post do
   end
 
   it "Deletes post and checks deleting associations with tags in Category " do
-    post1 = create(:post)
-    tag1 = create(:tag)
+    post1 = FactoryGirl.create(:post)
+    tag1 = FactoryGirl.create(:tag)
     tag1.posts.empty?.should == true
     tag1.posts << post1 
     Category.count.should == 1
     post1.destroy
     Category.count.should == 0
   end
+  
 end

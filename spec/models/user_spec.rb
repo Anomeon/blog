@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 describe User do
-
   it "Checks association user with post" do
-    user1 = create(:user)
-    post1 = create(:post)
+    user1 = FactoryGirl.create(:user)
+    post1 = FactoryGirl.create(:post)
     user1.posts.empty?.should == true
     user1.posts << post1
     user1.posts.first.id.should == post1.id
   end
 
   it "Deletes user and checks deleting posts associated with user" do
-    user1 = create(:user)
-    post1 = create(:post)
+    user1 = FactoryGirl.create(:user)
+    post1 = FactoryGirl.create(:post)
     user1.posts.empty?.should == true
     user1.posts << post1
     # puts user1.posts.count            # Удалить
@@ -23,11 +22,12 @@ describe User do
   end
 
   it "Deletes user and checks deleting comments associated with user" do
-    user1 = create(:user)
-    comment1 = create(:comment)
+    user1 = FactoryGirl.create(:user)
+    comment1 = FactoryGirl.create(:comment)
     user1.comments.empty?.should == true
     user1.comments << comment1
     user1.destroy
     user1.comments.empty?.should == true
   end
+
 end

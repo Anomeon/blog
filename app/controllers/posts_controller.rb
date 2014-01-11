@@ -49,7 +49,7 @@ class PostsController < ApplicationController
               end
             end
           else
-            @category = Category.where(post_id: params[:id], tag_id: p).first # поиск необходимой связи в таблице Categories
+            @category = PostTagAssigment.where(post_id: params[:id], tag_id: p).first # поиск необходимой связи в таблице Categories
             @category.destroy
           end
         end
