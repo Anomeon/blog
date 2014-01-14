@@ -5,9 +5,10 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :posts_tags_assignment do |t|
+    create_table :posts_tags_assignments do |t|
       t.belongs_to :tag
       t.belongs_to :post
+      t.timestamps
     end
   end
 end
