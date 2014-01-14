@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20131205153957) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "posts_tags_assigment", force: true do |t|
+  create_table "posts_tags_assignment", force: true do |t|
     t.integer "tag_id"
     t.integer "post_id"
   end
