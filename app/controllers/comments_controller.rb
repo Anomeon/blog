@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.build(comment_params) # build потому что create не сработает если на уровне базы данных стоит условие не пустого значения для связующего поля (запнется сразу на comments.user_id)
     @comment.user = current_user
     if @comment.save
       redirect_to user_post_path(@post.user.id, @post.id)

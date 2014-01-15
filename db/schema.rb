@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20131205153957) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
-    t.integer  "post_id"
-    t.integer  "user_id"
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20131205153957) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.string   "text"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20131205153957) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "posts_tags_assignments", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "post_id"
+    t.integer  "tag_id",     null: false
+    t.integer  "post_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

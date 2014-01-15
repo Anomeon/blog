@@ -6,8 +6,8 @@ class CreateTags < ActiveRecord::Migration
     end
 
     create_table :posts_tags_assignments do |t|
-      t.belongs_to :tag
-      t.belongs_to :post
+      t.belongs_to :tag, null: false
+      t.belongs_to :post, null: false
       t.timestamps
     end
   end
