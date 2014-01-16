@@ -2,45 +2,38 @@ require 'spec_helper'
 
 describe Post do
 
-  it "Checks association post with comment" do
-    user1 = FactoryGirl.create(:user)
-    post1 = FactoryGirl.create(:post)
-    comment1 = FactoryGirl.create(:comment)    
-    user1.comments.empty?.should == true
-    post1.comments.empty?.should == true
-    user1.comments << comment1
-    post1.comments << comment1
-    user1.comments.first.id.should == comment1.id
-    post1.comments.first.id.should == comment1.id
+  describe "Tests for association with comments" do
+
+    it "Checks association post with comment" do
+      comment1 = FactoryGirl.create(:comment)
+      comment1.user.comments.any?.should == true
+      comment1.post.comments.any?.should == true
+    end
+
+    it "Deletes post and checks deleting comments associated with post" do
+      comment1 = FactoryGirl.create(:comment)
+      comment1.user.comments.any?.should == true
+      comment1.post.destroy
+      comment1.post.comments.empty?.should == true
+    end
+
   end
 
-  it "Checks association post with tag" do
-    post1 = FactoryGirl.create(:post)
-    tag1 = FactoryGirl.create(:tag)
-    tag1.posts.empty?.should == true
-    tag1.posts << post1
-    category1 = Category.first
-    tag1.posts.first.id.should == category1.post_id
-    post1.tags.first.id.should == category1.tag_id
-  end
+  describe "Tests for association with tags" do
 
-  it "Deletes post and checks deleting comments associated with post" do
-    post1 = FactoryGirl.create(:post)
-    comment1 = FactoryGirl.create(:comment)
-    post1.comments.empty?.should == true
-    post1.comments << comment1
-    post1.destroy
-    post1.comments.empty?.should == true
-  end
+    it "Checks association post with tag" do
+      category1 = FactoryGirl.create(:posts_tags_assignment) 
+      category1.tag.posts.any?.should == true
+      category1.post.tags.any?.should == true
+    end
 
-  it "Deletes post and checks deleting associations with tags in Category " do
-    post1 = FactoryGirl.create(:post)
-    tag1 = FactoryGirl.create(:tag)
-    tag1.posts.empty?.should == true
-    tag1.posts << post1 
-    Category.count.should == 1
-    post1.destroy
-    Category.count.should == 0
-  end
+    it "Deletes post and checks deleting associations with tags in PostsTagsAssignment " do
+      category1 = FactoryGirl.create(:posts_tags_assignment)
+      category1.post.tags.any?.should == true
+      category1.post.destroy
+      category1.post.tags.empty?.should == true
+    end
   
+  end
+
 end
