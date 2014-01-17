@@ -1,0 +1,28 @@
+ru:
+  user:
+    link_еdit_profile: "Редактировать профиль"
+    not_you: "Не вы?"
+    sign_out: "Выйти"
+    signed_in_as: "Вы зашли как:"
+
+  post: 
+    title: "Заголовок"
+    text:  "Текст"
+    submit: "Создать статью"
+    author: "Автор:"
+    created_at: "Дата создания:"
+    comments: "Комментарии:"
+    leave_your_comment: "Оставьте ваш комментарий:"
+    button_edit: "Редактировать"
+    button_delete: "Удалить"
+    button_create_new_post: "Создать новую статью"
+    button_view_your_posts: "Посмотреть ваши статьи"
+    button_view_all_posts: "Посмотреть все статьи"
+
+  comment:
+    submit: "Создать комментарий"
+    button_edit: "Редактировать"
+    button_delete: "Удалить"
+
+  tag:
+    button_show_all_tags: "Посмотреть все тэги"

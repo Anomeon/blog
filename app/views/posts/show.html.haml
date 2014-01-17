@@ -7,11 +7,11 @@
   %hr
 
   %span.post-show-author
-    %strong Author:
+    %strong= t('post.author')
     = @post.user.email
 
   %span.post-show-created-at
-    %strong Created at:
+    %strong= t('post.created_at')
     = @post.created_at.strftime("%d %b. %Y %T")
 
   %hr
@@ -22,12 +22,12 @@
   #post-show-buttons
     - if user_signed_in?
       - if current_user.id == @post.user_id
-        = link_to 'Edit', edit_user_post_path(@post.user_id, @post.id)
-        = link_to 'Delete', user_post_path(@post.user_id, @post.id), method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to t('post.button_edit'), edit_user_post_path(@post.user_id, @post.id)
+        = link_to t('post.button_delete'), user_post_path(@post.user_id, @post.id), method: :delete, data: { confirm: 'Are you sure?' }
 
 .post-show-comments
 
-  %h2 Comments:
+  %h2= t('post.comments')
   - @post.comments.each do |comment|
     %p#show-comment-user-date
       %em
@@ -36,13 +36,13 @@
 
         - if user_signed_in?
           - if current_user.id == comment.user.id
-            = link_to 'Edit', edit_user_post_comment_path(comment.user_id, comment.post.id, comment.id) 
-            = link_to 'Delete', [current_user, comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to t('comment.button_edit'), edit_user_post_comment_path(comment.user_id, comment.post.id, comment.id) 
+            = link_to t('comment.button_delete'), [current_user, comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }
 
       #post-show-comment= comment.body 
 
   - if user_signed_in?
-    %p#leave-comment Leave your comment:
+    %p#leave-comment= t('post.leave_your_comment')
     = render template: 'comments/new'
   - else
     %p#to-leave-comments= render text: 'To leave comments please sign in'

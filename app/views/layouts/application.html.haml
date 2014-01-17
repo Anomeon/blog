@@ -14,12 +14,12 @@
         
       #layout-header
         - if user_signed_in?
-          %p#signed-in-as Signed in as 
+          %p#signed-in-as= t('user.signed_in_as') 
           %span#user-name= current_user.email
-          = link_to '(Edit profile)', edit_user_registration_path
-          Not you?
+          = link_to t('user.link_еdit_profile'), edit_user_registration_path
+          = t('user.not_you')
 
-          = link_to "Sign out", destroy_user_session_path, :method => :delete
+          = link_to t('user.sign_out'), destroy_user_session_path, :method => :delete
           %br
 
           %p
@@ -27,10 +27,10 @@
               = content_tag :div, msg, :id => "flash_#{name}"
 
           .layout-top-buttons
-            = link_to 'Create new post', new_user_post_path(current_user)
-            = link_to 'View your posts', user_posts_path(current_user.id)
-            = link_to 'Show all posts', root_url
-            = link_to 'Show all tags',  tags_path
+            = link_to t('post.button_create_new_post'), new_user_post_path(current_user)
+            = link_to t('post.button_view_your_posts'), user_posts_path(current_user.id)
+            = link_to t('post.button_view_all_posts'), root_url
+            = link_to t('tag.button_show_all_tags'), tags_path
 
         - else
           = link_to "Sign up", new_user_registration_path 
